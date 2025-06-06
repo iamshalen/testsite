@@ -18,9 +18,13 @@ jobs:
       pages: write
       id-token: write
 
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -47,5 +51,5 @@ jobs:
       run: git config --global user.name "iamshalen"
 
     - name: Deploy to GitHub Pages
-      run: npx gh-pages -d build #GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npm run deploy
+      run: GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npx gh-pages -d build
           
