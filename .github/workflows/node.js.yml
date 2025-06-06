@@ -43,9 +43,5 @@ jobs:
       run: git config --global user.name "iamshalen"
 
     - name: Deploy to GitHub Pages
-      run: |
-          GH_TOKEN=${{ secrets.GH_TOKEN }} \
-          GH_EMAIL="iamshalen@gmail.com" \ 
-          GH_NAME="iamshalen" \
-          npm run deploy
+      run: GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npm run deploy
           #npx gh-pages -d build
