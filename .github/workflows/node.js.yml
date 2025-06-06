@@ -35,14 +35,22 @@ jobs:
     
     - name: Run Build
       run: npm run build --if-present
-    
+
+    - name: Git Uname
+      run: git config --global user.email "iamshalen@gmail.com"
+
+    - name: Git Email
+      run: git config --global user.name "iamshalen"
+
     - name: Deploy to GitHub Pages
-      run: npm run deploy
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }} # Pass the secret as an environment variable
-        GH_NAME:  ${{ secrets.GH_NAME }}
-        GH_EMAIL:  ${{ secrets.GH_EMAIL }}
+      run: |
+          # The 'GH_TOKEN' is the most critical one for authentication
+          GH_TOKEN=${{ secrets.GH_TOKEN }} \
+          GH_EMAIL="iamshalen@gmail.com" \ # Optional: Set a specific email for the commit
+          GH_NAME="iamshalen"
           # If your 'homepage' in package.json is like 'https://<username>.github.io/<repo-name>/'
           # and you want to deploy to 'gh-pages' branch,
           # you might need to set the base URL for gh-pages.
           # If your homepage in package.json was set for /testsite/, it looks like it's already configured correctly.
+          npm run deploy
+          #npx gh-pages -d build
