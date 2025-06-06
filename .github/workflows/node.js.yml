@@ -27,12 +27,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - name: Install all dependencies
-    - run: npm install --legacy-peer-deps
-    - run: npm install gh-pages --legacy-peer-deps --save-dev
+    - name: Install legacy dependencies
+      run: npm install --legacy-peer-deps
+
+    - name: Install GH pages
+      run: npm install gh-pages --legacy-peer-deps --save-dev
     
     - name: Run Build
-    - run: npm run build --if-present
+      run: npm run build --if-present
     
     - name: Deploy to GitHub Pages
       run: npm run deploy
