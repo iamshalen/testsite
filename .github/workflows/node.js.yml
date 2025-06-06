@@ -26,9 +26,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+
+    - name: Install all dependencies
     - run: npm install --legacy-peer-deps
     - run: npm install gh-pages --legacy-peer-deps --save-dev
+    
+    - name: Run Build
     - run: npm run build --if-present
-    - run: git config user.email "iamshalen@gmail.com"
-    - run: git config user.name "iamshalen"
-    - run: npm run deploy
+    
+    - name: Deploy to GitHub Pages
+      run: npm run deploy
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }} # Pass the secret as an environment variable
+          # If your 'homepage' in package.json is like 'https://<username>.github.io/<repo-name>/'
+          # and you want to deploy to 'gh-pages' branch,
+          # you might need to set the base URL for gh-pages.
+          # If your homepage in package.json was set for /testsite/, it looks like it's already configured correctly.
