@@ -40,12 +40,12 @@ jobs:
     - name: Run Build
       run: npm run build --if-present
 
-    #- name: Git Uname
-      #run: git config --global user.email "iamshalen@gmail.com"
+    - name: Git Uname
+      run: git config --global user.email "iamshalen@gmail.com"
 
-    #- name: Git Email
-      #run: git config --global user.name "iamshalen"
+    - name: Git Email
+      run: git config --global user.name "iamshalen"
 
     - name: Deploy to GitHub Pages
-      run: GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npm run deploy
-          #npx gh-pages -d build
+      run: npx gh-pages -d build #GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npm run deploy
+          
