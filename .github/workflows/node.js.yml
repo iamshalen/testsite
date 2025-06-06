@@ -40,6 +40,8 @@ jobs:
       run: npm run deploy
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }} # Pass the secret as an environment variable
+        GH_NAME:  ${{ secrets.GH_NAME }}
+        GH_EMAIL:  ${{ secrets.GH_EMAIL }}
           # If your 'homepage' in package.json is like 'https://<username>.github.io/<repo-name>/'
           # and you want to deploy to 'gh-pages' branch,
           # you might need to set the base URL for gh-pages.
