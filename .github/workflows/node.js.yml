@@ -44,13 +44,8 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-          # The 'GH_TOKEN' is the most critical one for authentication
           GH_TOKEN=${{ secrets.GH_TOKEN }} \
-          GH_EMAIL="iamshalen@gmail.com" \ # Optional: Set a specific email for the commit
-          GH_NAME="iamshalen"
-          # If your 'homepage' in package.json is like 'https://<username>.github.io/<repo-name>/'
-          # and you want to deploy to 'gh-pages' branch,
-          # you might need to set the base URL for gh-pages.
-          # If your homepage in package.json was set for /testsite/, it looks like it's already configured correctly.
+          GH_EMAIL="iamshalen@gmail.com" \ 
+          GH_NAME="iamshalen" \
           npm run deploy
           #npx gh-pages -d build
