@@ -44,12 +44,9 @@ jobs:
     - name: Run Build
       run: npm run build --if-present
 
-    - name: Git Uname
-      run: git config --global user.email "iamshalen@gmail.com"
-
-    - name: Git Email
-      run: git config --global user.name "iamshalen"
-
     - name: Deploy to GitHub Pages
-      run: GH_TOKEN=${{ secrets.GH_TOKEN }} GH_EMAIL="iamshalen@gmail.com" GH_NAME="iamshalen" npx gh-pages -d build
-          
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }} 
+        publish_dir: ./build 
+        
