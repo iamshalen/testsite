@@ -38,11 +38,18 @@ jobs:
     - name: Install legacy dependencies
       run: npm install --legacy-peer-deps
 
-    - name: Install GH pages
-      run: npm install gh-pages --legacy-peer-deps --save-dev
+    - name: Copy assets and contents folders into build output
+      run: |
+        cp -r ./public/assets ./build/assets
+        cp -r ./public/content ./build/content
     
     - name: Run Build
-      run: npm run build --if-present
+      run: npm run build
+      
+    - name: Copy assets and contents folders into build output
+      run: |
+        cp -r ./public/assets ./build/assets
+        cp -r ./public/content ./build/content
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
