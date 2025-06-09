@@ -33,27 +33,17 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'npm'
 
     - name: Install legacy dependencies
-      run: yarn install --frozen-lockfile
+      run: npm install --legacy-peer-deps
 
     - name: Ad GH pages
-      run: yarn add --dev gh-pages
+      run: npm run build
 
-    #- name: Deploy to GitHub Pages
-      #uses: peaceiris/actions-gh-pages@v4
-      #with:
-        #github_token: ${{ secrets.GITHUB_TOKEN }} 
-            #publish_dir: ./build 
-    - name: Set Git Identity
-      run: |
-        git config user.name "iamshalen"
-        git config user.email "iamshalen@gmail.com"
-        git remote set-url origin git@github.com:iamshalen/testsite.git
-
-    
-    - name: Deploy GitHub Pages 🚀
-      run: yarn deploy
-      env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
