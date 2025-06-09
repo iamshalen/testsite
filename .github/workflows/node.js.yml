@@ -33,16 +33,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        cache: 'yarn'
 
     - name: Install legacy dependencies
-      run: npm install --legacy-peer-deps
+      run: yarn install --frozen-lockfile
 
-    - name: Install GH pages
-      run: npm install gh-pages --save-dev
-    
-    - name: Run Build
-      run: npm run build
+    - name: Ad GH pages
+      run: yarn add --dev gh-pages
 
     #- name: Deploy to GitHub Pages
       #uses: peaceiris/actions-gh-pages@v4
