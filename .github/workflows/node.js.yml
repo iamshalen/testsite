@@ -45,7 +45,13 @@ jobs:
       #uses: peaceiris/actions-gh-pages@v4
       #with:
         #github_token: ${{ secrets.GITHUB_TOKEN }} 
-        #publish_dir: ./build 
+            #publish_dir: ./build 
+    - name: Set Git Identity
+      run: |
+        git config user.name "iamshalen"
+        git config user.email "iamshalen@gmail.com"
+
+    
     - name: Deploy GitHub Pages 🚀
       run: yarn deploy
       env:
