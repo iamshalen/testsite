@@ -50,6 +50,7 @@ jobs:
       run: |
         git config user.name "iamshalen"
         git config user.email "iamshalen@gmail.com"
+        git remote set-url origin git@github.com:iamshalen/testsite.git
 
     
     - name: Deploy GitHub Pages 🚀
